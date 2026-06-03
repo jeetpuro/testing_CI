@@ -31,6 +31,5 @@ TEST_DATA = {
     "image_path": "assets/photo.png", # Path relative to project root
     "recursive list": _rec,
     "pi": 3.141592653589793238462643383279502884197169399375105820974944592307816406286,
-    "recursive list": [[2, [4,1]], [95], 8],
     "recursive_function": recursive_func_factorial(9)
 }

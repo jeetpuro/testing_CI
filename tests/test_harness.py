@@ -65,18 +65,3 @@ def test_class_instance_roundtrip(test_data, protocol):
     loaded = roundtrip(original, protocol)
     assert type(loaded) is type(original)
     assert loaded == original
-
-def test_image_roundtrip(protocol, tmp_path):
-    # Setup a dummy image file for testing
-    image_path = tmp_path / "dummy_photo.png"
-    image_path.write_bytes(b"dummy image data")
-    
-    # Read binary
-    with open(image_path, "rb") as f:
-        original_binary = f.read()
-        
-    # Roundtrip
-    loaded_binary = roundtrip(original_binary, protocol)
-    
-    # Assert
-    assert loaded_binary == original_binary

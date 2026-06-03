@@ -1,0 +1,63 @@
+name: Pickle Stability Tests
+
+on:
+  push:
+  branches:
+    - main
+    - jeet_branch
+
+jobs:
+  # Job 1: Generate hashes for every OS + Python combination
+  generate_hashes:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.10", "3.11", "3.12", "3.13" ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # (Optional) If you have any dependencies in requirements.txt, keep this
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run pickle serialization and generate hashes
+        run: python src/run_pickle_tests.py
+
+      # Upload ONLY the metadata.json (which contains the hashes)
+      - name: Upload results as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: results-${{ matrix.os }}-py${{ matrix.python-version }}
+          path: results/metadata.json
+          retention-days: 1 # We just need it for the next job
+
+  # Job 2: Download all hashes and compare them
+  compare:
+    needs: generate_hashes # Tells GitHub to wait until all 12 generate_hashes jobs finish
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10" # Just need one Python version to run the compare script
+
+      - name: Download all JSON artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all_results/
+
+      - name: Cross-Compare Hashes
+        run: python src/compare_results.py

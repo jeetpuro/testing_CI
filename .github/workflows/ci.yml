@@ -2,9 +2,7 @@ name: Pickle Stability Tests
 
 on:
   push:
-  branches:
-    - main
-    - jeet_branch
+
 
 jobs:
   # Job 1: Generate hashes for every OS + Python combination

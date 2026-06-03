@@ -11,6 +11,13 @@ class Fruit:
 _rec = []
 _rec.append(_rec)
 
+def recursive_func_factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * recursive_func_factorial(n-1)
+    
+
 # Export a single dictionary of all test data
 TEST_DATA = {
     "dict": {1: "I", 2: "love", 3: "Software", 4: "Testing", 5: "Pa1465", 6: "<3", 7: 1337},
@@ -23,6 +30,7 @@ TEST_DATA = {
     "class_instance": Fruit("Apple", "Red"),
     "image_path": "assets/photo.png", # Path relative to project root
     "recursive list": _rec,
-    "pi": 3.141592653589793238462643383279502884197169399375105820974944592307816406286
-
+    "pi": 3.141592653589793238462643383279502884197169399375105820974944592307816406286,
+    "recursive list": [[2, [4,1]], [95], 8],
+    "recursive_function": recursive_func_factorial(9)
 }

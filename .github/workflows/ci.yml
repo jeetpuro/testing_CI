@@ -1,6 +1,6 @@
 name: Pickle Stability Tests
 
-on:
+on: #good shit
   push:
 
 

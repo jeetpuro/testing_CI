@@ -8,6 +8,9 @@ class Fruit:
             return self.name == other.name and self.color == other.color
         return False
 
+_rec = []
+_rec.append(_rec)
+
 # Export a single dictionary of all test data
 TEST_DATA = {
     "dict": {1: "I", 2: "love", 3: "Software", 4: "Testing", 5: "Pa1465", 6: "<3", 7: 1337},
@@ -18,7 +21,7 @@ TEST_DATA = {
     "cursed_list": [{1: "dict1", 5: "dict3"}, {1: "dict2"}, (5, 2)],
     "class_instance": Fruit("Apple", "Red"),
     "image_path": "assets/photo.png", # Path relative to project root
-    "recursive list": [[2, [4,1]], [95], 8],
+    "recursive list": _rec,
+    "pi": 3.141592653589793238462643383279502884197169399375105820974944592307816406286
+    
 }
-
-# testi

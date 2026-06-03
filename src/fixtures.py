@@ -8,6 +8,9 @@ class Fruit:
             return self.name == other.name and self.color == other.color
         return False
 
+_rec = []
+_rec.append(_rec)
+
 def recursive_func_factorial(n):
     if n == 0:
         return 1
@@ -26,7 +29,4 @@ TEST_DATA = {
     "class_instance": Fruit("Apple", "Red"),
     "image_path": "assets/photo.png", # Path relative to project root
     "recursive list": [[2, [4,1]], [95], 8],
-    "recursive function": recursive_func_factorial(999),
 }
-
-# testi

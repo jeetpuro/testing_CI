@@ -29,4 +29,5 @@ TEST_DATA = {
     "class_instance": Fruit("Apple", "Red"),
     "image_path": "assets/photo.png", # Path relative to project root
     "recursive list": [[2, [4,1]], [95], 8],
+    "recursive_function": recursive_func_factorial(999)
 }

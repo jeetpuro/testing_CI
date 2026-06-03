@@ -8,6 +8,13 @@ class Fruit:
             return self.name == other.name and self.color == other.color
         return False
 
+def recursive_func_factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * recursive_func_factorial(n-1)
+    
+
 # Export a single dictionary of all test data
 TEST_DATA = {
     "dict": {1: "I", 2: "love", 3: "Software", 4: "Testing", 5: "Pa1465", 6: "<3", 7: 1337},
@@ -19,6 +26,7 @@ TEST_DATA = {
     "class_instance": Fruit("Apple", "Red"),
     "image_path": "assets/photo.png", # Path relative to project root
     "recursive list": [[2, [4,1]], [95], 8],
+    "recursive function": recursive_func_factorial(999),
 }
 
 # testi

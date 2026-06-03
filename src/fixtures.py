@@ -29,7 +29,8 @@ TEST_DATA = {
     "float_decimal": Decimal("3.1415926535897932384626433832795028841971"),
     "tuple": (13, 37),
     "set": {1, "string"},
-    "cursed_list": [{1: "dict1", 5: "dict3"}, {1: "dict2"}, (5, 2)],
+    "frozen_set": frozenset({1, "string", 1337}),
+    "cursed_list": [{1: "dict1", 5: "dict3"}, [1, "strings"], (5, 2)],
     "class_instance": Fruit("Apple", "Red"),
     "recursive list": _rec,
     "recursive_function": recursive_func_factorial(9)

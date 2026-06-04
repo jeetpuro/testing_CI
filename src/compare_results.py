@@ -100,7 +100,7 @@ def compare_grouped_environments(grouped, compare_by):
                     print(f"      Test ({current_label}): {test_hash}")
                     mismatch_found = True
                 else:
-                    print(f"    [PASS] '{object_key}' hashes match.")
+                    print(f"    [PASS] '{object_key}' hashes match. Hash: {ref_hash}")
 
     return mismatch_found
 

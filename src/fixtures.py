@@ -18,6 +18,19 @@ def recursive_func_factorial(n):
         return 1
     else:
         return n * recursive_func_factorial(n-1)
+
+def return_big_number():
+    return 10**100
+
+def return_small_number():
+    return 10**-100
+
+def return_big_negative_number():
+    return -10**100
+
+def return_small_negative_number():
+    return -10**-100
+
     
 
 # Export a single dictionary of all test data
@@ -33,5 +46,9 @@ TEST_DATA = {
     "cursed_list": [{1: "dict1", 5: "dict3"}, [1, "strings"], (5, 2)],
     "class_instance": Fruit("Apple", "Red"),
     "recursive list": _rec,
-    "recursive_function": recursive_func_factorial(9)
+    "recursive_function": recursive_func_factorial(9),
+    "big_number": return_big_number(),
+    "small_number": return_small_number(),
+    "big_negative_number": return_big_negative_number(),
+    "small_negative_number": return_small_negative_number()
 }

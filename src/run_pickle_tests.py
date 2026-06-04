@@ -6,8 +6,6 @@ import os
 import json
 from fixtures import TEST_DATA
 
-
-
 def pickle_and_hash(obj, protocol):
     data = pickle.dumps(obj, protocol=protocol)
     digest = hashlib.sha256(data).hexdigest()

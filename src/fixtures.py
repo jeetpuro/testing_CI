@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 class Fruit:
     def __init__(self, name, color):
         self.name = name
@@ -23,13 +25,13 @@ TEST_DATA = {
     "dict": {1: "I", 2: "love", 3: "Software", 4: "Testing", 5: "Pa1465", 6: "<3", 7: 1337},
     "string": "I Love Software Testing PA1465 <3",
     "int": 1337,
-    "float": 2.710001 + 3.14751,
-    "float_round": round(2.710001 + 3.147512323),
+    "float": 2.710001 + 3.14751, 
+    "float_decimal": Decimal("3.1415926535897932384626433832795028841971"),
     "tuple": (13, 37),
-    "cursed_list": [{1: "dict1", 5: "dict3"}, {1: "dict2"}, (5, 2)],
+    "set": {1, "string"},
+    "frozen_set": frozenset({1, "string", 1337}),
+    "cursed_list": [{1: "dict1", 5: "dict3"}, [1, "strings"], (5, 2)],
     "class_instance": Fruit("Apple", "Red"),
-    "image_path": "assets/photo.png", # Path relative to project root
     "recursive list": _rec,
-    "pi": 3.141592653589793238462643383279502884197169399375105820974944592307816406286,
     "recursive_function": recursive_func_factorial(9)
 }

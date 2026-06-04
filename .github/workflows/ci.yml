@@ -5,7 +5,7 @@ on: #good shit
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-  PYTHONHASHSEED: "9"
+  # PYTHONHASHSEED: "9"
 
 jobs:
   # Job 1: Generate hashes for every OS + Python combination
@@ -41,11 +41,11 @@ jobs:
           path: results/metadata.json
           retention-days: 1 # We just need it for the next job
 
-  # Job 2: Download all hashes and compare them
-  compare:
-    needs: generate_hashes # Tells GitHub to wait until all 12 generate_hashes jobs finish
+  # Job 2: Compare hashes across OSes for each Python version
+  compare_across_os:
+    needs: generate_hashes
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -53,12 +53,34 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10" # Just need one Python version to run the compare script
+          python-version: "3.10"
 
       - name: Download all JSON artifacts
         uses: actions/download-artifact@v4
         with:
           path: all_results/
 
-      - name: Cross-Compare Hashes
-        run: python src/compare_results.py
+      - name: Cross-Compare Hashes Across OSes
+        run: python src/compare_results.py --compare-by os
+
+  # Job 3: Compare hashes across Python versions within each OS
+  compare_across_python_versions:
+    needs: generate_hashes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Download all JSON artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all_results/
+
+      - name: Cross-Compare Hashes Across Python Versions
+        run: python src/compare_results.py --compare-by python
